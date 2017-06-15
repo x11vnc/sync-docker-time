@@ -5,6 +5,7 @@ then
   mkdir -p ~/Library/SyncDockerTime/
   curl https://github.com/x11vnc/sync-docker-time/archive/master.zip | \
       bsdtar xf -C ~/Library/SyncDockerTime/ --strip 1
+  rm -rf ~/Library/SyncDockerTime/sleepwatcher_2.2
   chmod a+x ~/Library/SyncDockerTime/bin/*
   ln -s -f ~/Library/SyncDockerTime/io.github.sync-docker-time.plist \
       ~/Library/LaunchAgents/
