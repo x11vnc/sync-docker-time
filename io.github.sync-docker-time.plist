@@ -14,5 +14,9 @@
 	<true/>
 	<key>KeepAlive</key>
 	<true/>
+	<key>StandardOutPath</key>
+	<string>~/.sync-docker-time.log</string>
+	<key>StandardErrorPath</key>
+	<string>~/.sync-docker-time.log</string>
 </dict>
 </plist>

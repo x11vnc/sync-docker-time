@@ -17,22 +17,23 @@ MANDIR=/usr/local/man
 sleepwatcher: src/sleepwatcher.c
 	$(CC) $(CFLAGS) -o sleepwatcher src/sleepwatcher.c $(LIBS)
 
-install: sleepwatcher
+install: sleepwatcher uninstall
 	mkdir -p ~/Library/SleepWatcher/bin
 	cp sleepwatcher ~/Library/SleepWatcher/bin
 	mkdir -p ~/Library/LaunchAgents
 	cp config/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher.plist
 	touch ~/.sleep ~/.wakeup
+	perl -e "s/\~/\/Users\/$USER/g" -p -i ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher.plist
 	launchctl load ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher.plist
 
 uninstall:
-	launchctl list | grep -q de.bernhard-baehr.sleepwatcher && \
-	launchctl remove de.bernhard-baehr.sleepwatcher || true
-	killall sleepwatcher || true
+	launchctl unload ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher.plist 2> /dev/null || true
+	killall sleepwatcher 2> /dev/null || true
+
 	rm -rf ~/Library/SleepWatcher
 	rm -f ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher.plist
 
-install_root: sleepwatcher man/sleepwatcher.8
+install_root: sleepwatcher man/sleepwatcher.8 uninstall_root
 	mkdir -p $(BINDIR)
 	install -o root -g wheel -m 755 sleepwatcher $(BINDIR)
 	mkdir -p $(MANDIR)/man8
@@ -42,9 +43,8 @@ install_root: sleepwatcher man/sleepwatcher.8
 	launchctl load /Library/LaunchDaemons/de.bernhard-baehr.sleepwatcher.plist
 
 uninstall_root:
-	launchctl list | grep -q de.bernhard-baehr.sleepwatcher && \
-  launchctl unload /Library/LaunchDaemons/de.bernhard-baehr.sleepwatcher.plist || true
-	killall sleepwatcher || true
+  launchctl unload /Library/LaunchDaemons/de.bernhard-baehr.sleepwatcher.plist 2> /dev/null || true
+	killall sleepwatcher 2> /dev/null || true
 	rm -rf /Library/StartupItems/SleepWatcher
 	rm -f /usr/local/sbin/sleepwatcher /usr/local/share/man/man8/sleepwatcher
 	mv /Library/LaunchDaemons/de.bernhard-baehr.sleepwatcher.plist ~/.Trash || true
