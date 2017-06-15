@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>io.github.x11vnc.sync-docker-time</string>
+	<string>io.github.sync-docker-time</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>~/Library/SyncDockerTime/bin/sleepwatcher-sdt</string>

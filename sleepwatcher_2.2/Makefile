@@ -26,8 +26,8 @@ install: sleepwatcher
 	launchctl load ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher.plist
 
 uninstall:
-	launchctl list | grep -q de.bernhard-baehr.sleepwatcher &&
-    launchctl remove de.bernhard-baehr.sleepwatcher || true
+	launchctl list | grep -q de.bernhard-baehr.sleepwatcher && \
+	launchctl remove de.bernhard-baehr.sleepwatcher || true
 	killall sleepwatcher || true
 	rm -rf ~/Library/SleepWatcher
 	rm -f ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher.plist
@@ -42,8 +42,8 @@ install_root: sleepwatcher man/sleepwatcher.8
 	launchctl load /Library/LaunchDaemons/de.bernhard-baehr.sleepwatcher.plist
 
 uninstall_root:
-	launchctl list | grep -q de.bernhard-baehr.sleepwatcher &&
-    launchctl remove de.bernhard-baehr.sleepwatcher || true
+	launchctl list | grep -q de.bernhard-baehr.sleepwatcher && \
+  launchctl unload /Library/LaunchDaemons/de.bernhard-baehr.sleepwatcher.plist || true
 	killall sleepwatcher || true
 	rm -rf /Library/StartupItems/SleepWatcher
 	rm -f /usr/local/sbin/sleepwatcher /usr/local/share/man/man8/sleepwatcher
