@@ -7,5 +7,4 @@ then
 
   rm -rf ~/Library/SyncDockerTime/
   rm -f ~/Library/LaunchAgents/io.github.sync-docker-time.plist
-  rm -r ~/.sync-docker-time.log
 fi

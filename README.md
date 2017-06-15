@@ -8,6 +8,8 @@ To install, run the following command:
 
 `curl -L -s https://raw.githubusercontent.com/x11vnc/sync-docker-time/master/install.sh | bash`
 
+The clock will synced during the installation and also every time your Mac wakes up from sleep as long as Docker is running. The daemon will be restart automatically every time you log back in.
+
 ## Uninstallation
 
 To uninstall, run the following command:
