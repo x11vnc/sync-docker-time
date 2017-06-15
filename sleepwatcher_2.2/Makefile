@@ -22,6 +22,7 @@ install: sleepwatcher
 	cp sleepwatcher ~/Library/SleepWatcher/bin
 	mkdir -p ~/Library/LaunchAgents
 	cp config/de.bernhard-baehr.sleepwatcher-20compatibility-localuser.plist ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher.plist
+	touch ~/.sleep ~/.wakeup
 	launchctl load ~/Library/LaunchAgents/de.bernhard-baehr.sleepwatcher.plist
 
 uninstall:
