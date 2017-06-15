@@ -6,7 +6,7 @@
 	<string>io.github.x11vnc.sync-docker-time</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>~/Library/SyncDockerTime/bin/sleepwatcher</string>
+		<string>~/Library/SyncDockerTime/bin/sleepwatcher-sdt</string>
 		<string>-V</string>
 		<string>-w ~/Library/SyncDockerTime/bin/sync-docker-time</string>
 	</array>
