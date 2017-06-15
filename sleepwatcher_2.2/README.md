@@ -2,8 +2,6 @@
 
 SleepWatcher is a command line tool (daemon) that monitors sleep, wakeup and idleness of a Mac. It was developed by Bernhard Baehr. It can be used to execute a Unix command when the Mac or the display of the Mac goes to sleep mode or wakes up, after a given time without user interaction or when the user resumes activity after a break or when the power supply of a Mac notebook is attached or detached. It also can send the Mac to sleep mode or retrieve the time since last user activity.
 
-A little bit knowledge of the Unix command line is required to benefit from this software.
-
 ## Installation
 
 ### Uninstall Previous Versions
