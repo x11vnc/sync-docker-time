@@ -14,6 +14,9 @@ LIBS   = -framework IOKit -framework CoreFoundation
 BINDIR=/usr/local/sbin
 MANDIR=/usr/local/man
 
+../bin/sleepwatcher-sdt: sleepwatcher
+	cp sleepwatcher ../bin/sleepwatcher-sdt
+
 sleepwatcher: src/sleepwatcher.c
 	$(CC) $(CFLAGS) -o sleepwatcher src/sleepwatcher.c $(LIBS)
 
@@ -43,7 +46,7 @@ install_root: sleepwatcher man/sleepwatcher.8 uninstall_root
 	launchctl load /Library/LaunchDaemons/de.bernhard-baehr.sleepwatcher.plist
 
 uninstall_root:
-  launchctl unload /Library/LaunchDaemons/de.bernhard-baehr.sleepwatcher.plist 2> /dev/null || true
+	launchctl unload /Library/LaunchDaemons/de.bernhard-baehr.sleepwatcher.plist 2> /dev/null || true
 	killall sleepwatcher 2> /dev/null || true
 	rm -rf /Library/StartupItems/SleepWatcher
 	rm -f /usr/local/sbin/sleepwatcher /usr/local/share/man/man8/sleepwatcher
