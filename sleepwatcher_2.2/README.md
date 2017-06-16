@@ -15,7 +15,7 @@ sudo make uninstall_root
 If you use SleepWatcher on a single user Mac and only want to execute your own .sleep and .wakeup scripts, it is suggested for you to run SleepWatcher as a regular user. You can install using the following command:
 ```
 make
-make install_user
+make install
 ```
 
 Now SleepWatcher will start running. You can create executable files $HOME/.sleep and $HOME/.wakeup in their home directories, which will be executed when the Mac goes to sleep mode or wakes up. SleepWatcher will stop when you log off from the Mac and it will be restarted automatically when you log in again.
