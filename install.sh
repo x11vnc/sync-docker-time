@@ -23,8 +23,7 @@ then
   launchctl load ~/Library/LaunchAgents/io.github.sync-docker-time.plist
 
   # Try to run sync-docker-time once and also check launchctl
-  ~/Library/SyncDockerTime/bin/sync-docker-time > ~/Library/SyncDockerTime/log/stdout.log && \
-    launchctl list io.github.sync-docker-time | grep -q '"LastExitStatus" = 0'
+  launchctl list io.github.sync-docker-time | grep -q '"LastExitStatus" = 0'
 
   if [ $? -eq '0' ]; then
     echo "SyncDockerTime was installed successfully"
@@ -32,5 +31,8 @@ then
     echo "Installation of SyncDockerTime has failed"
   fi
 else
-  echo "SyncDockerTime already exists. Please uninstall first by running uninstall.sh."
+  echo "SyncDockerTime already exists. To reinstall, please uninstall first."
 fi
+
+echo "Testing sync-docker-time..."
+~/Library/SyncDockerTime/bin/sync-docker-time

@@ -14,7 +14,7 @@ if [ $? -eq 0 ]; then
       echo "Sync at $(date)"
       # Call docker to sync time and quite only if received reply fro ntpd
       /usr/local/bin/docker run --rm --privileged --pid=host walkerlee/nsenter \
-        -t 1 -m -u -i -n ntpd -d -q -n -p pool.ntp.org 2>&1 |
+        -t 1 -m -u -i -n ntpd -d -q -n -p pool.ntp.org 2>&1 | tee |
         grep "ntpd: reply from" && break
     fi
     sleep 1
