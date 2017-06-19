@@ -4,7 +4,7 @@ if [ ! -f ~/Library/SyncDockerTime/io.github.sync-docker-time.plist ];
 then
   mkdir -p ~/Library/SyncDockerTime/log
 
-  if [[ "$0" -eq "bash" ]]; then
+  if [[ "$0" == "bash" ]]; then
     # Running in a pipe. Always download latest version
     curl -L -s https://github.com/x11vnc/sync-docker-time/archive/master.zip | \
         bsdtar xf - -C ~/Library/SyncDockerTime/ --strip-components 1
@@ -23,7 +23,7 @@ then
   launchctl load ~/Library/LaunchAgents/io.github.sync-docker-time.plist
 
   # Try to run sync-docker-time once and also check launchctl
-  ~/Library/SyncDockerTime/bin/sync-docker-time > ~/Library/SyncDockerTime/log/sync-docker-time.log && \
+  ~/Library/SyncDockerTime/bin/sync-docker-time > ~/Library/SyncDockerTime/log/stdout.log && \
     launchctl list io.github.sync-docker-time | grep -q '"LastExitStatus" = 0'
 
   if [ $? -eq '0' ]; then
@@ -31,4 +31,6 @@ then
   else
     echo "Installation of SyncDockerTime has failed"
   fi
+else
+  echo "SyncDockerTime already exists. Please uninstall first by running uninstall.sh."
 fi

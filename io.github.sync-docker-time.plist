@@ -15,8 +15,8 @@
 	<key>KeepAlive</key>
 	<true/>
 	<key>StandardOutPath</key>
-	<string>~/Library/SyncDockerTime/log/sync-docker-time.log</string>
+	<string>~/Library/SyncDockerTime/log/stdout.log</string>
 	<key>StandardErrorPath</key>
-	<string>~/Library/SyncDockerTime/log/sync-docker-time.log</string>
+	<string>~/Library/SyncDockerTime/log/stderr.log</string>
 </dict>
 </plist>

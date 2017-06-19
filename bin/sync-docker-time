@@ -2,17 +2,21 @@
 
 #  Copyright © 2017 Xiangmin Jiao. All rights reserved.
 
-docker ps -q > /dev/null 2>&1
+
+# Only check if docker is running
+/usr/local/bin/docker ps -q > /dev/null 2>&1
+
 if [ $? -eq 0 ]; then
-  # Only check if docker is running
-  for i in {1..30}; do
+  echo "Waiting for network at $(date)"
+  for i in {1..300}; do
     nc 8.8.8.8 53 -z 2> /dev/null
     if [ $? -eq 0 ]; then
+      echo "Sync at $(date)"
       # Call docker to sync time and quite only if received reply fro ntpd
-      docker run --rm --privileged --pid=host walkerlee/nsenter \
+      /usr/local/bin/docker run --rm --privileged --pid=host walkerlee/nsenter \
         -t 1 -m -u -i -n ntpd -d -q -n -p pool.ntp.org 2>&1 |
         grep "ntpd: reply from" && break
     fi
-    sleep 5
+    sleep 1
   done
 fi
